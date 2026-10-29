@@ -1,0 +1,675 @@
+/**
+ * Base44 "Amber" theme for the Node-RED editor.
+ *
+ * Loaded through editorTheme.page.css (see docker-compose.base44.yml).
+ * Purely presentational: every control, panel and behaviour is stock
+ * Node-RED, driven by the editor's own --red-ui-* custom properties.
+ *
+ * Accent #fcba03 is reserved for branding, icons, highlights and primary
+ * actions - never used as a large surface fill.
+ */
+
+:root {
+    /* ── Typography ── */
+    --red-ui-primary-font: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --red-ui-primary-font-size: 14px;
+    --red-ui-monospace-font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+        Consolas, "DejaVu Sans Mono", monospace;
+
+    /* ── Surfaces ── */
+    --red-ui-primary-background: #f5f6f8;
+    --red-ui-secondary-background: #ffffff;
+    --red-ui-secondary-background-selected: #fff8e6;
+    --red-ui-secondary-background-inactive: #f9fafb;
+    --red-ui-secondary-background-hover: #f2f4f7;
+    --red-ui-secondary-background-disabled: #f7f8fa;
+    --red-ui-tertiary-background: #fbfbfc;
+    --red-ui-shadow: rgba(16, 18, 24, 0.12);
+
+    /* ── Text ── */
+    --red-ui-primary-text-color: #15171c;
+    --red-ui-secondary-text-color: #575e6a;
+    --red-ui-secondary-text-color-focus: #3f4653;
+    --red-ui-secondary-text-color-hover: #2b313b;
+    --red-ui-secondary-text-color-active: #2b313b;
+    --red-ui-secondary-text-color-selected: #241b00;
+    --red-ui-secondary-text-color-inactive: #6a7280;
+    --red-ui-secondary-text-color-disabled: #b3b9c2;
+    --red-ui-secondary-text-color-disabled-active: #9aa1ab;
+    --red-ui-secondary-text-color-disabled-inactive: #a8aeb8;
+    --red-ui-tertiary-text-color: #6a7280;
+    --red-ui-header-text-color: #15171c;
+    --red-ui-text-color-link: #96690a;
+    --red-ui-text-color-warning: #9a6400;
+
+    /* ── Borders ── */
+    --red-ui-primary-border-color: #e3e6eb;
+    --red-ui-secondary-border-color: #eff1f5;
+    --red-ui-tertiary-border-color: #d5d9e0;
+    --red-ui-border-color-warning: #e0a400;
+
+    /* ── Forms ── */
+    --red-ui-form-input-focus-color: #d9a300;
+    --red-ui-form-input-border-color: #dfe2e8;
+    --red-ui-form-input-border-selected-color: #e0a400;
+    --red-ui-form-input-background: #ffffff;
+    --red-ui-form-button-background: #f4f5f7;
+    --red-ui-form-tips-background: #fbfbfc;
+
+    /* ── Masthead (dark graphite) ── */
+    --red-ui-header-background: #14161a;
+    --red-ui-header-menu-color: #f4f5f7;
+    --red-ui-header-menu-background: #ffffff;
+    --red-ui-header-menu-color-disabled: #8a9099;
+    --red-ui-header-button-background: transparent;
+    --red-ui-header-button-background-hover: rgba(255, 255, 255, 0.12);
+    --red-ui-header-button-background-active: rgba(255, 255, 255, 0.18);
+    --red-ui-header-button-border: rgba(255, 255, 255, 0.14);
+
+    /* ── Primary action (Deploy) ── */
+    --red-ui-deploy-button-background: #fcba03;
+    --red-ui-deploy-button-background-hover: #ffc933;
+    --red-ui-deploy-button-background-active: #e5a900;
+    --red-ui-deploy-button-background-disabled: #2a2d34;
+    --red-ui-deploy-button-background-disabled-hover: #33373f;
+    --red-ui-deploy-button-color: #241b00;
+    --red-ui-deploy-button-color-active: #241b00;
+    --red-ui-deploy-button-color-disabled: #8a9099;
+    --red-ui-deploy-button-border-color: #e0a400;
+
+    /* ── Tabs ── */
+    --red-ui-tab-text-color-active: #15171c;
+    --red-ui-tab-text-color-inactive: #5b626d;
+    --red-ui-tab-background: #ffffff;
+    --red-ui-tab-background-active: #ffffff;
+    --red-ui-tab-background-selected: #f6f7f9;
+    --red-ui-tab-background-inactive: #f3f4f6;
+    --red-ui-tab-background-hover: #eef0f4;
+    --red-ui-tab-badge-color: #e0a400;
+    --red-ui-tab-icon-color: #b07d00;
+    --red-ui-tab-hover-overlay: rgba(16, 18, 24, 0.03);
+
+    /* ── Palette ── */
+    --red-ui-palette-header-background: #ffffff;
+    --red-ui-palette-header-color: #6a7280;
+    --red-ui-palette-content-background: #ffffff;
+
+    /* ── Workspace ── */
+    --red-ui-view-background: #f7f8fa;
+    --red-ui-view-grid-color: #e6e9ee;
+    --red-ui-workspace-button-background: #ffffff;
+    --red-ui-workspace-button-background-hover: #f2f4f7;
+    --red-ui-workspace-button-background-active: #e9ecf1;
+    --red-ui-workspace-button-background-selected: #fff6dc;
+    --red-ui-workspace-button-border-selected: #fcba03;
+    --red-ui-workspace-button-color: #575e6a;
+    --red-ui-workspace-button-color-hover: #15171c;
+    --red-ui-workspace-button-color-selected: #a97600;
+    --red-ui-workspace-button-color-primary: #241b00;
+    --red-ui-workspace-button-background-primary: #fcba03;
+    --red-ui-workspace-button-background-primary-hover: #ffc933;
+    --red-ui-workspace-button-color-focus-outline: #fcba03;
+
+    /* ── Selection & focus accents ── */
+    --red-ui-node-selected-color: #e0a400;
+    --red-ui-port-selected-color: #e0a400;
+    --red-ui-list-item-background-selected: #fff6dc;
+    --red-ui-list-item-background-hover: #f6f7f9;
+    --red-ui-list-item-border-selected: #fcba03;
+    --red-ui-scrollbar-handle-background: #d3d8df;
+    --red-ui-spinner-color: #d9a300;
+
+    /* ── Menus / popovers ── */
+    --red-ui-menuBackground: #ffffff;
+    --red-ui-menuColor: #23262c;
+    --red-ui-menuDivider: #eff1f5;
+    --red-ui-menuActiveColor: #241b00;
+    --red-ui-menuActiveBackground: #fff6dc;
+    --red-ui-menuHoverColor: #15171c;
+    --red-ui-menuHoverBackground: #f2f4f7;
+    --red-ui-menuDisabledColor: #a8aeb8;
+    --red-ui-menuCaret: #8a9099;
+    --red-ui-popover-background: #ffffff;
+    --red-ui-popover-border: #e3e6eb;
+    --red-ui-popover-color: #23262c;
+    --red-ui-tooltip-background: #1b1e24;
+    --red-ui-tooltip-border: #1b1e24;
+    --red-ui-tooltip-color: #f5f6f8;
+}
+
+/* ═══════════════════════════ Base ═══════════════════════════ */
+
+body,
+input,
+textarea,
+select,
+button {
+    font-family: var(--red-ui-primary-font);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: rgba(252, 186, 3, 0.32);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--red-ui-scrollbar-handle-background);
+    border: 3px solid transparent;
+    border-radius: 8px;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #bcc2cc;
+    background-clip: content-box;
+}
+
+/* ═══════════════════════════ Masthead ═══════════════════════════ */
+
+#red-ui-header {
+    background: #14161a;
+    color: var(--red-ui-header-menu-color);
+    box-shadow: 0 1px 0 rgba(16, 18, 24, 0.5);
+}
+
+#red-ui-header-logo span.red-ui-header-logo > span {
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: #f4f5f7;
+}
+
+#red-ui-header-logo img {
+    height: 22px;
+}
+
+#red-ui-header .button {
+    border-radius: 8px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+#red-ui-header-toolbar ul.red-ui-header-toolbar > li > a.button {
+    color: rgba(244, 245, 247, 0.78);
+    border-radius: 8px;
+}
+
+#red-ui-header-toolbar ul.red-ui-header-toolbar > li > a.button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Deploy: the one solid accent surface in the chrome */
+.red-ui-deploy-button-group {
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(252, 186, 3, 0.22);
+}
+
+#red-ui-header #red-ui-header-button-deploy,
+#red-ui-header #red-ui-header-button-deploy-options {
+    color: #241b00 !important;
+    border-color: #e0a400 !important;
+    background: #fcba03;
+}
+
+#red-ui-header #red-ui-header-button-deploy {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 3px 12px;
+    letter-spacing: 0.01em;
+}
+
+#red-ui-header #red-ui-header-button-deploy + #red-ui-header-button-deploy-options {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left-color: rgba(36, 27, 0, 0.18) !important;
+}
+
+#red-ui-header #red-ui-header-button-deploy:hover,
+#red-ui-header #red-ui-header-button-deploy + #red-ui-header-button-deploy-options:hover {
+    background: #ffc933;
+}
+
+#red-ui-header #red-ui-header-button-deploy.disabled,
+#red-ui-header #red-ui-header-button-deploy.disabled + #red-ui-header-button-deploy-options {
+    color: rgba(36, 27, 0, 0.62) !important;
+    background: rgba(252, 186, 3, 0.55) !important;
+    border-color: rgba(224, 164, 0, 0.55) !important;
+    box-shadow: none;
+}
+
+/* Dropdown menus opened from the masthead */
+#red-ui-header ul.red-ui-menu-dropdown {
+    background: #ffffff;
+    border: 1px solid #e3e6eb;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(10, 12, 16, 0.28), 0 2px 8px rgba(10, 12, 16, 0.12);
+}
+
+#red-ui-header ul.red-ui-menu-dropdown li a {
+    color: #23262c;
+    border-radius: 8px;
+    margin: 2px 4px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#red-ui-header ul.red-ui-menu-dropdown li a:hover,
+#red-ui-header ul.red-ui-menu-dropdown li.open > a {
+    background: #f2f4f7 !important;
+    color: #15171c;
+}
+
+#red-ui-header ul.red-ui-menu-dropdown li a .red-ui-popover-key {
+    color: #8a9099 !important;
+    border-color: #dfe2e8 !important;
+}
+
+#red-ui-header ul.red-ui-menu-dropdown li.red-ui-menu-divider {
+    background: #eff1f5;
+}
+
+/* ═══════════════════════════ Tabs ═══════════════════════════ */
+
+.red-ui-tabs ul li {
+    border-radius: 9px 9px 0 0;
+    transition: background-color 0.15s ease;
+}
+
+.red-ui-tabs ul li.active a.red-ui-tab-label {
+    font-weight: 650;
+}
+
+/* Flow tabs live in the dark masthead */
+#red-ui-header-tabs {
+    border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+#red-ui-header-tabs .red-ui-tabs,
+#red-ui-header-tabs .red-ui-tabs .red-ui-tab-button {
+    background: transparent;
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li {
+    background: transparent;
+    border-radius: 9px 9px 0 0;
+    box-shadow: none;
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li:not(.active) a.red-ui-tab-label {
+    color: rgba(244, 245, 247, 0.72);
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li:not(.active):hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li:not(.active):hover::after {
+    background: transparent;
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li.active {
+    background: #ffffff;
+    border-color: transparent;
+    box-shadow: inset 0 2px 0 0 #fcba03, 0 1px 4px rgba(10, 12, 16, 0.45);
+}
+
+#red-ui-header-tabs .red-ui-tabs ul li.active a.red-ui-tab-label {
+    color: #15171c;
+    font-weight: 650;
+}
+
+#red-ui-header-tabs .red-ui-tabs .red-ui-tab-button a {
+    background: transparent;
+    color: rgba(244, 245, 247, 0.72);
+    border-radius: 8px;
+    border-color: transparent;
+}
+
+#red-ui-header-tabs .red-ui-tabs .red-ui-tab-button a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* ═══════════════════════════ Palette ═══════════════════════════ */
+
+.red-ui-searchBox-container {
+    border: 1px solid var(--red-ui-form-input-border-color);
+    border-radius: 9px;
+    background: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.red-ui-searchBox-container:focus-within {
+    border-color: var(--red-ui-form-input-focus-color);
+    box-shadow: 0 0 0 3px rgba(252, 186, 3, 0.2);
+}
+
+input.red-ui-searchBox-input {
+    border-radius: 9px;
+    background: transparent;
+}
+
+.red-ui-palette-search {
+    padding: 6px 10px;
+}
+
+.red-ui-palette-header {
+    border-radius: 8px;
+    margin: 2px 6px 0 6px;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.red-ui-palette-header > i {
+    color: #b07d00;
+}
+
+.red-ui-palette-header:hover {
+    background: var(--red-ui-secondary-background-hover);
+}
+
+.red-ui-palette-node {
+    border-radius: 9px;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.red-ui-palette-node:hover {
+    background: var(--red-ui-secondary-background-hover);
+    box-shadow: 0 1px 3px rgba(16, 18, 24, 0.1);
+}
+
+.red-ui-palette-icon-container {
+    border-radius: 7px;
+}
+
+.red-ui-palette-label {
+    font-weight: 500;
+}
+
+/* ═══════════════════════════ Sidebar ═══════════════════════════ */
+
+.red-ui-sidebar-toggle-button {
+    border-radius: 8px;
+    margin: 2px 1px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.red-ui-sidebar-toggle-button.selected {
+    background: var(--red-ui-workspace-button-background-selected);
+    color: #a97600;
+}
+
+.red-ui-sidebar-toggle-button.selected i.red-ui-sidebar-tab-icon {
+    color: #b07d00;
+}
+
+.red-ui-sidebar-tab-bar {
+    padding: 0 6px;
+}
+
+.red-ui-sidebar-section {
+    border-radius: 12px;
+    border-color: #e6e8ec;
+    box-shadow: 0 1px 2px rgba(16, 18, 24, 0.04);
+}
+
+.red-ui-sidebar-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--red-ui-secondary-border-color);
+    padding: 6px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #6a7280;
+}
+
+.red-ui-sidebar-footer {
+    background: #fbfbfc;
+}
+
+.red-ui-sidebar-header-button,
+a.red-ui-sidebar-header-button,
+button.red-ui-sidebar-header-button {
+    border-radius: 7px;
+}
+
+/* ═══════════════════════════ Workspace ═══════════════════════════ */
+
+#red-ui-workspace-toolbar {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(1.1) blur(6px);
+    border-bottom: 1px solid var(--red-ui-secondary-border-color);
+    box-shadow: 0 1px 3px rgba(16, 18, 24, 0.05);
+}
+
+#red-ui-workspace-toolbar .button {
+    border-radius: 8px;
+}
+
+#red-ui-workspace-chart {
+    background: var(--red-ui-view-background);
+}
+
+/* ═══════════════════════════ Forms & buttons ═══════════════════════════ */
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+textarea,
+select,
+.red-ui-text-input,
+.red-ui-textarea {
+    border-radius: 8px;
+    border-color: var(--red-ui-form-input-border-color);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+.red-ui-text-input:focus,
+.red-ui-textarea:focus {
+    outline: none;
+    border-color: var(--red-ui-form-input-focus-color);
+    box-shadow: 0 0 0 3px rgba(252, 186, 3, 0.22);
+}
+
+.red-ui-button,
+button.red-ui-button,
+a.red-ui-button {
+    border-radius: 8px;
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease, color 0.15s ease;
+}
+
+.red-ui-button:focus-visible,
+button.red-ui-button:focus-visible {
+    outline: 2px solid #fcba03;
+    outline-offset: 1px;
+}
+
+.red-ui-primary-button,
+.red-ui-button.red-ui-primary-button,
+button.red-ui-primary-button,
+.red-ui-button.primary {
+    background: #fcba03;
+    border-color: #e0a400;
+    color: #241b00;
+    font-weight: 600;
+}
+
+.red-ui-primary-button:hover,
+.red-ui-button.red-ui-primary-button:hover,
+button.red-ui-primary-button:hover,
+.red-ui-button.primary:hover {
+    background: #ffc933;
+    border-color: #e0a400;
+    color: #241b00;
+}
+
+/* Dialog action buttons */
+.ui-dialog-buttonset button {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ui-dialog-buttonset button:hover {
+    background: var(--red-ui-workspace-button-background-hover);
+    color: var(--red-ui-workspace-button-color-hover);
+}
+
+/* ═══════════════════════════ Dialogs, trays, menus ═══════════════════════════ */
+
+.ui-dialog {
+    border-radius: 14px;
+    border: 1px solid var(--red-ui-primary-border-color);
+    box-shadow: 0 24px 60px rgba(10, 12, 16, 0.24), 0 4px 12px rgba(10, 12, 16, 0.1);
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--red-ui-secondary-border-color);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    padding: 14px 18px;
+}
+
+.ui-dialog .ui-dialog-title {
+    font-weight: 650;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: var(--red-ui-primary-text-color);
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 20px 22px 12px 22px;
+}
+
+.ui-dialog .ui-dialog-buttonpane.ui-widget-content {
+    background: var(--red-ui-tertiary-background);
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-top: 1px solid var(--red-ui-secondary-border-color);
+    padding: 10px 14px;
+}
+
+.red-ui-tray-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(10, 12, 16, 0.12);
+}
+
+.red-ui-tray-header {
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    padding-left: 4px;
+}
+
+.ui-menu,
+.red-ui-menu-dropdown,
+.red-ui-popover,
+ul.red-ui-menu-dropdown {
+    border-radius: 12px;
+    box-shadow: 0 14px 36px rgba(10, 12, 16, 0.16), 0 2px 6px rgba(10, 12, 16, 0.07);
+    overflow: hidden;
+}
+
+.ui-menu .ui-menu-item a,
+.red-ui-menu-dropdown li a {
+    transition: background-color 0.12s ease;
+}
+
+.ui-menu .ui-state-active,
+.ui-menu .ui-menu-item a.ui-state-active,
+.red-ui-menu-dropdown li.open > a {
+    background: var(--red-ui-menuActiveBackground);
+    color: var(--red-ui-menuActiveColor);
+}
+
+/* ═══════════════════════════ Notifications & lists ═══════════════════════════ */
+
+#red-ui-notifications .red-ui-notification {
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(10, 12, 16, 0.16);
+    border-left-width: 3px;
+}
+
+.red-ui-notification-error {
+    border-left-color: #df2935;
+}
+
+.red-ui-notification-warning {
+    border-left-color: #e0a400;
+}
+
+.red-ui-notification-success {
+    border-left-color: #218358;
+}
+
+.red-ui-list-item,
+.red-ui-node-list-item {
+    border-radius: 8px;
+}
+
+/* ═══════════════════════════ Flow canvas ═══════════════════════════ */
+
+.red-ui-flow-node-label-text {
+    font-weight: 500;
+}
+
+/* ═══════════════════════════ Narrow screens ═══════════════════════════ */
+
+@media (max-width: 760px) {
+    #red-ui-header-logo {
+        min-width: auto !important;
+    }
+    #red-ui-header #red-ui-header-button-deploy {
+        padding: 3px 9px;
+    }
+    .red-ui-palette-header {
+        margin: 2px 4px 0 4px;
+    }
+}
+
+/* ═══════════════════════════ Dark scheme (user toggle) ═══════════════════════════ */
+
+html.nr-theme-dark {
+    --red-ui-tab-icon-color: #fcba03;
+    --red-ui-node-selected-color: #fcba03;
+    --red-ui-port-selected-color: #fcba03;
+    --red-ui-list-item-border-selected: #fcba03;
+    --red-ui-workspace-button-background-selected: #3a3007;
+    --red-ui-workspace-button-color-selected: #fcba03;
+    --red-ui-workspace-button-border-selected: #fcba03;
+    --red-ui-form-input-focus-color: #fcba03;
+    --red-ui-form-input-border-selected-color: #fcba03;
+    --red-ui-workspace-button-color-focus-outline: #fcba03;
+    --red-ui-text-color-link: #fcba03;
+    --red-ui-tab-badge-color: #fcba03;
+    --red-ui-spinner-color: #fcba03;
+}
+
+html.nr-theme-dark .red-ui-palette-header > i,
+html.nr-theme-dark .red-ui-sidebar-toggle-button.selected,
+html.nr-theme-dark .red-ui-sidebar-toggle-button.selected i.red-ui-sidebar-tab-icon {
+    color: #fcba03;
+}

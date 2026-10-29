@@ -19,6 +19,20 @@ docker compose -f docker-compose.base44.yml logs -f node-red
   container recreation.
 - The editor is served on the admin root `/` (not `/red`), on port 3000 via `PORT`.
 
+## Visual theme
+
+The editor uses a custom theme in `theme/`:
+
+- `theme/base44-theme.css` — overrides the editor's `--red-ui-*` custom properties and restyles the
+  chrome (masthead, tabs, palette, sidebar panels, dialogs, forms). Accent `#fcba03` is used for
+  branding, icons, highlights and the Deploy button only; surfaces stay neutral.
+- `theme/base44-mark.svg` — the amber masthead mark.
+
+They are wired through the supported `editorTheme` mechanism by the `-D` defines in
+`docker-compose.base44.yml` (`editorTheme.page.css`, `editorTheme.header.image`). The CSS is served
+statically from `/theme/css/base44-theme.css`, so editing the file only needs a browser reload.
+The styling is presentation-only: no Node-RED behaviour, flow data or API is touched.
+
 ## Gotchas
 
 - No database, queue or external service is required; the app boots with no secrets.

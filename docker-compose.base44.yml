@@ -13,7 +13,11 @@ services:
     command:
       - sh
       - -ec
-      - CI=true npm ci --no-audit --no-fund && exec node scripts/dev --userDir /data
+      - >-
+        CI=true npm ci --no-audit --no-fund &&
+        exec node scripts/dev --userDir /data
+        -D "editorTheme.page.css=/workspace/theme/base44-theme.css"
+        -D "editorTheme.header.image=/workspace/theme/base44-mark.svg"
     ports:
       - "3000:3000"
     environment:
