@@ -1,0 +1,45 @@
+# Base44 development environment for Node-RED.
+#
+# Runs Node-RED straight from the cloned source with the repo's own live-reload
+# dev command (scripts/dev.js: rebuilds the editor client and restarts the
+# runtime via nodemon when backend files change).
+services:
+  node-red:
+    image: node:22
+    working_dir: /workspace
+    # Dependencies live in a named volume (mounted over ./node_modules) so the
+    # sandbox checkout stays clean; install from the lockfile on every start,
+    # then run the dev command which builds the editor and starts nodemon.
+    command:
+      - sh
+      - -ec
+      - CI=true npm ci --no-audit --no-fund && exec node scripts/dev --userDir /data
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - NODE_RED_DISABLE_TELEMETRY=1
+      - BASE44_PREVIEW_MODE
+    volumes:
+      - ./:/workspace
+      - node_modules:/workspace/node_modules
+      # Node-RED user directory (settings.js, flows.json, credentials)
+      - node-red-data:/data
+    labels:
+      base44.project: Node-RED
+      base44.kind: web
+      base44.port: "3000"
+    restart: on-failure
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 300s
+
+volumes:
+  node_modules:
+  node-red-data:
