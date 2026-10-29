@@ -20,6 +20,8 @@ services:
       - PORT=3000
       - NODE_ENV=development
       - NODE_RED_DISABLE_TELEMETRY=1
+      # Hide the first-run "welcome tour" dialogs in the editor
+      - NODE_RED_ENABLE_TOURS=false
       - BASE44_PREVIEW_MODE
     volumes:
       - ./:/workspace
