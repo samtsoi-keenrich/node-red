@@ -381,22 +381,136 @@ input.red-ui-searchBox-input {
     background: var(--red-ui-secondary-background-hover);
 }
 
-.red-ui-palette-node {
+/* Palette entries are a clean list - colour tile, bold name, chevron -
+   instead of coloured pills. The node's own colour is kept, but only as the
+   fill of the small icon tile, so the palette reads as one consistent list. */
+
+#red-ui-palette-container .red-ui-palette-content {
+    padding: 0;
+}
+
+#red-ui-palette-container .red-ui-palette-content > div {
+    align-items: stretch;
+}
+
+#red-ui-palette-container .red-ui-palette-node,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    height: auto !important;
+    min-height: 40px;
+    margin: 0 !important;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 0;
+    /* Paints the row white over the node colour kept for the icon tile */
+    background-image: linear-gradient(
+        var(--red-ui-palette-content-background),
+        var(--red-ui-palette-content-background)
+    );
+    box-shadow: none;
+    text-align: left;
+    cursor: grab;
+}
+
+#red-ui-palette-container .red-ui-palette-node {
+    width: auto;
+    border-bottom: 1px solid var(--red-ui-secondary-border-color);
+}
+
+#red-ui-palette-container .red-ui-palette-node:last-child {
+    border-bottom: 0;
+}
+
+#red-ui-palette-container .red-ui-palette-node:hover {
+    background-image: linear-gradient(
+        var(--red-ui-secondary-background-hover),
+        var(--red-ui-secondary-background-hover)
+    );
+    border-color: var(--red-ui-secondary-border-color);
+    box-shadow: none;
+}
+
+#red-ui-palette-container .red-ui-palette-node:active {
+    cursor: grabbing;
+}
+
+/* The drag helper floats over the canvas as a card of the same shape */
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging {
+    width: 200px;
+    border: 1px solid var(--red-ui-primary-border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(16, 18, 24, 0.18);
+    opacity: 0.96;
+}
+
+#red-ui-palette-container .red-ui-palette-node > .red-ui-palette-icon-container,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging > .red-ui-palette-icon-container {
+    position: static;
+    order: 1;
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border: 0;
     border-radius: 9px;
-    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    /* Takes the node's own colour from the row */
+    background-color: inherit;
+    background-image: linear-gradient(rgba(16, 18, 24, 0.14), rgba(16, 18, 24, 0.14));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.red-ui-palette-node:hover {
-    background: var(--red-ui-secondary-background-hover);
-    box-shadow: 0 1px 3px rgba(16, 18, 24, 0.1);
+#red-ui-palette-container .red-ui-palette-node > .red-ui-palette-icon-container > .red-ui-palette-icon,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging > .red-ui-palette-icon-container > .red-ui-palette-icon {
+    width: 20px;
+    height: 20px;
 }
 
-.red-ui-palette-icon-container {
-    border-radius: 7px;
+#red-ui-palette-container .red-ui-palette-node > .red-ui-palette-icon-container > .red-ui-palette-icon-fa,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging > .red-ui-palette-icon-container > .red-ui-palette-icon-fa {
+    position: static;
+    top: auto;
+    left: auto;
+    color: #ffffff;
+    font-size: 14px;
 }
 
-.red-ui-palette-label {
-    font-weight: 500;
+#red-ui-palette-container .red-ui-palette-node > .red-ui-palette-label,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging > .red-ui-palette-label {
+    order: 2;
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+    color: var(--red-ui-primary-text-color);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+#red-ui-palette-container .red-ui-palette-node::after,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging::after {
+    content: "\2192";
+    order: 3;
+    flex: 0 0 auto;
+    color: var(--red-ui-tertiary-border-color);
+    font-size: 13px;
+    line-height: 1;
+    transition: color 0.12s ease;
+}
+
+#red-ui-palette-container .red-ui-palette-node:hover::after {
+    color: var(--red-ui-workspace-button-color-selected);
+}
+
+/* The list rows carry no input/output ports */
+#red-ui-palette-container .red-ui-palette-node > .red-ui-palette-port,
+#red-ui-editor > .red-ui-palette-node.ui-draggable-dragging > .red-ui-palette-port {
+    display: none;
 }
 
 /* ═══════════════════════════ Sidebar ═══════════════════════════ */

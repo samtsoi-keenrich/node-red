@@ -27,6 +27,10 @@ The editor uses a custom theme in `theme/`:
   chrome (masthead, tabs, palette, sidebar panels, dialogs, forms). Accent `#fcba03` is used for
   branding, icons, highlights and the Deploy button only; surfaces stay neutral.
 - `theme/base44-mark.svg` — the amber masthead mark.
+- The palette is a list (colour tile, bold label, chevron), not coloured pills. Node-RED keeps
+  each node's colour as an inline `background-color` on the palette row and its core icons are
+  white SVGs, so the row paints a white gradient over that colour and the icon tile uses
+  `background-color: inherit` to pick the colour back up — change both together.
 
 They are wired through the supported `editorTheme` mechanism by the `-D` defines in
 `docker-compose.base44.yml` (`editorTheme.page.css`, `editorTheme.header.image`). The CSS is served
