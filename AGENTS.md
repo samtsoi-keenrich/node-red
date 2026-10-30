@@ -32,10 +32,17 @@ The editor uses a custom theme in `theme/`:
   white SVGs, so the row paints a white gradient over that colour and the icon tile uses
   `background-color: inherit` to pick the colour back up — change both together.
 
+- `theme/base44-panels.js` — makes the left sidebar panels (Explorer, Palette) floatable: each
+  banner gets a pop-out button (click or drag it out), the panel becomes a floating card over the
+  canvas that is dragged by its title bar and docked back with the pin button. Only the section's
+  `.red-ui-sidebar-content` element is moved into the float, so Node-RED's own tabs, palette and
+  drag-and-drop keep working; no flow data or API is touched.
+
 They are wired through the supported `editorTheme` mechanism by the `-D` defines in
-`docker-compose.base44.yml` (`editorTheme.page.css`, `editorTheme.header.image`). The CSS is served
-statically from `/theme/css/base44-theme.css`, so editing the file only needs a browser reload.
-The styling is presentation-only: no Node-RED behaviour, flow data or API is touched.
+`docker-compose.base44.yml` (`editorTheme.page.css`, `editorTheme.page.scripts`,
+`editorTheme.header.image`). The CSS and the script are served statically from `/theme/`, so editing
+them only needs a browser reload. The styling and the panel shell are presentation-only: no
+Node-RED behaviour, flow data or API is touched.
 
 ## Gotchas
 

@@ -561,6 +561,96 @@ button.red-ui-sidebar-header-button {
     border-radius: 7px;
 }
 
+/* ═══════════════════════════ Floating panels ═══════════════════════════ */
+
+/* Pop-out control in the sidebar title strip */
+.red-ui-sidebar-banner-tools .b44-float-toggle {
+    color: var(--red-ui-secondary-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.red-ui-sidebar-banner-tools .b44-float-toggle:hover {
+    background: rgba(252, 186, 3, 0.2);
+    color: #a97600;
+}
+
+/* A popped-out panel leaves its title strip behind as the way back */
+.red-ui-sidebar-section.b44-floating {
+    min-height: 0;
+    background: var(--red-ui-secondary-background-inactive);
+    border-style: dashed;
+}
+
+.red-ui-sidebar-section.b44-floating > .red-ui-sidebar-banner {
+    border-bottom: 0;
+}
+
+.b44-float-panel {
+    position: fixed;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    min-width: 190px;
+    min-height: 160px;
+    overflow: hidden;
+    background: var(--red-ui-secondary-background);
+    border: 1px solid var(--red-ui-primary-border-color);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(10, 12, 16, 0.22), 0 3px 10px rgba(10, 12, 16, 0.1);
+}
+
+.b44-float-panel.b44-dragging {
+    box-shadow: 0 24px 52px rgba(10, 12, 16, 0.28), 0 4px 12px rgba(10, 12, 16, 0.12);
+}
+
+.b44-float-titlebar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 28px;
+    padding: 0 6px 0 10px;
+    background: var(--red-ui-tertiary-background);
+    border-bottom: 1px solid var(--red-ui-secondary-border-color);
+    cursor: grab;
+    user-select: none;
+}
+
+.b44-float-panel.b44-dragging .b44-float-titlebar {
+    cursor: grabbing;
+}
+
+.b44-float-title {
+    flex: 1 1 auto;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red-ui-palette-header-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.b44-float-dock {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--red-ui-secondary-text-color);
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.b44-float-dock:hover {
+    background: rgba(252, 186, 3, 0.2);
+    color: #a97600;
+}
+
 /* ═══════════════════════════ Workspace ═══════════════════════════ */
 
 #red-ui-workspace-toolbar {
